@@ -19,7 +19,6 @@ public class SecurityConfig  {
         return http
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/", "/home","/home.css").permitAll();
-//                    auth.requestMatchers("/home.css").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .oauth2Login(withDefaults())
