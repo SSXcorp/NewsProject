@@ -12,17 +12,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-
 @Configuration
-@EnableWebSecurity
-public class SecurityConfig  {
+public class SecurityConfig {
+
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.anyRequest().authenticated()
                 ).formLogin(
@@ -33,11 +32,12 @@ public class SecurityConfig  {
                                 .permitAll()
                 ).logout(
                         logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout" ))
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 );
         return http.build();
     }
+}
 
 //    @Bean
 //    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -51,5 +51,3 @@ public class SecurityConfig  {
 //                .build();
 //    }
 
-
-}

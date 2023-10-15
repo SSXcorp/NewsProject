@@ -1,4 +1,4 @@
-package ssx.info.web.service;
+package ssx.info.web.model;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ssx.info.web.model.User;
 import ssx.info.web.repository.UserRepository;
-
 
 @Service
 public class UserDetail implements UserDetailsService {
