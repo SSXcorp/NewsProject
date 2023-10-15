@@ -16,6 +16,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
 //    @Pattern(regexp = "[A-Z][a-z]+",
 //            message = "Must start with a capital letter followed by one or more lowercase letters")
     @Column(name = "first_name", nullable = false)
@@ -100,4 +103,11 @@ public class User {
                 "} ";
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

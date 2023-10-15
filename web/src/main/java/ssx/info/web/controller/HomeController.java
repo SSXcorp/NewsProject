@@ -1,23 +1,37 @@
 package ssx.info.web.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 @Controller
 public class HomeController {
-
-    @GetMapping({"/", "home"})
-    public String home(Model model) {
-//        model.addAttribute("users", userService.getAll());
-        return "home";
+    @GetMapping("/")
+    public String greeting() {
+        return "index";
+    }
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
     }
 
-    @GetMapping("/profile")
-    public String profile(Model model) {
-//        model.addAttribute("users", userService.getAll());
-        return "User-profile";
+    @GetMapping("/manager")
+    public String manager() {
+        return "manager";
+    }
+
+    @GetMapping("/employee")
+    public String employee() {
+        return "employee";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/login";
     }
 }
-
