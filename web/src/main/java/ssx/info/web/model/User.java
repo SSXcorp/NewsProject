@@ -2,13 +2,17 @@ package ssx.info.web.model;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import java.util.Set;
 
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -29,7 +33,13 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    private Role role;
+    @Column(name = "role")
+    private String role;
+
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<Role> roles;
 
     public long getId() {
         return id;
@@ -71,12 +81,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
-
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
